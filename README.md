@@ -65,8 +65,10 @@ sudo python3 venom.py
 ```
 
 6. Rentrez les identifiants par défaut:
-   _Username :_ admin
-   _Password :_ password
+   ```
+   Username : admin
+   Password : password
+   ```
    
 8. Choisissez une option dans le menu interactif :
    _Option 1 :_ Entrez l'adresse IP cible puis le numéro de port
