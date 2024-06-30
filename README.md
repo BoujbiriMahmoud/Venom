@@ -21,11 +21,11 @@ Venom est conçu pour générer et tester des shellcodes polymorphes. Il compren
 
 ## 🧩 Composants
 
-**I - Authentification sécurisée :** Hachage bcrypt pour sécuriser les identifiants utilisateur.
-**II - Génération de shellcode polymorphe :** Instructions polymorphes pour rendre la détection plus difficile.
-**II - Conversion IP/Port en hexadécimal :** Encodage et décodage faciles des adresses IP et des ports.
-**IV - Création de fichiers C :** Génération de fichiers C contenant le shellcode pour une compilation facile.
-**V  - Journalisation :** Enregistrement détaillé des tentatives d'authentification et des attaques pour un suivi et une analyse.
+1. **Authentification sécurisée :** Hachage bcrypt pour sécuriser les identifiants utilisateur.
+2. **Génération de shellcode polymorphe :** Instructions polymorphes pour rendre la détection plus difficile.
+3. **Conversion IP/Port en hexadécimal :** Encodage et décodage faciles des adresses IP et des ports.
+4. **Création de fichiers C :** Génération de fichiers C contenant le shellcode pour une compilation facile.
+5. **Journalisation :** Enregistrement détaillé des tentatives d'authentification et des attaques pour un suivi et une analyse.
 
 ## 🏗️ Structure du Code
 
