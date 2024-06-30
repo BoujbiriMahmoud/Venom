@@ -71,9 +71,9 @@ sudo python3 venom.py
    ```
    
 8. Choisissez une option dans le menu interactif :
-   _Option 1 :_ Entrez l'adresse IP cible puis le numéro de port
-   _Option 2 :_ Ouvrez une session écouteur Netcat
-   _Option 3 :_ Visualisez les journaux
-   _option 4 :_ Quitter le programme
+   *Option 1 : Entrez l'adresse IP cible puis le numéro de port
+   *Option 2 : Ouvrez une session écouteur Netcat
+   *Option 3 : Visualisez les journaux
+   *Option 4 : Quitter le programme
 
 🎉 **Enjoy Hacking Responsibly!** 🎉
