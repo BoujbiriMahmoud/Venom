@@ -1,5 +1,5 @@
 /!\ Code asm avec explications /!\
-/!\ Non éxecutable !! /!\
+/!\ Non executable !! /!\
 
 global _start  # Déclaration de l'étiquette _start comme point d'entrée global
 
