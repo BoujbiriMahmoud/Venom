@@ -40,7 +40,7 @@ Le code est organisé en plusieurs sections principales :
 ## 🚀 Utilisation
 
 ### Configuration
-Par défaut, le projet fonctionne sur l'adresse IP et le port spécifiés par l'utilisateur. Vous pouvez modifier ces valeurs dans le script principal.
+Par défaut, le projet fonctionne avec les identifiants spécifiés sur le code. Vous pouvez modifier ces valeurs dans le script principal.
 
 ### Journalisation
 Les logs fournissent des informations détaillées sur les tentatives d'authentification et les attaques générées.
